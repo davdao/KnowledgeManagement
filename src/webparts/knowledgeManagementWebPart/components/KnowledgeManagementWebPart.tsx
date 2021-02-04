@@ -1,25 +1,39 @@
 import * as React from 'react';
 import styles from './KnowledgeManagementWebPart.module.scss';
-import { IKnowledgeManagementWebPartProps } from './IKnowledgeManagementWebPartProps';
+import { useState, useEffect } from 'react';
 import { escape } from '@microsoft/sp-lodash-subset';
+import { WebPartContext } from '@microsoft/sp-webpart-base';
+import KMSearchBar from './KMSearchBar';
+import KMSearchResult from './KMSearchResult';
 
-export default class KnowledgeManagementWebPart extends React.Component<IKnowledgeManagementWebPartProps, {}> {
-  public render(): React.ReactElement<IKnowledgeManagementWebPartProps> {
-    return (
-      <div className={ styles.knowledgeManagementWebPart }>
-        <div className={ styles.container }>
-          <div className={ styles.row }>
-            <div className={ styles.column }>
-              <span className={ styles.title }>Welcome to SharePoint!</span>
-              <p className={ styles.subTitle }>Customize SharePoint experiences using Web Parts.</p>
-              <p className={ styles.description }>{escape(this.props.description)}</p>
-              <a href="https://aka.ms/spfx" className={ styles.button }>
-                <span className={ styles.label }>Learn more</span>
-              </a>
-            </div>
-          </div>
-        </div>
+const [searchBoxValue, setSearchBoxValue] = useState("");
+
+const KnowledgeManagementWebPart = () => {
+/*
+ <KMSearchBar 
+          searchBoxValueProp={(searchBoxValue)}
+          searchBoxOnChangeProp={(e) => setSearchBoxValue(e)} />
+
+*/
+  useEffect(() => {
+
+
+    //Get all result
+  }, []);
+
+  return (
+    <div className={ styles.knowledgeManagementWebPart }>
+     
+
+      <KMSearchResult />
+
+      <div>
+        {"oho"}
+        {searchBoxValue}
       </div>
-    );
-  }
-}
+    </div>
+  );
+
+};
+
+export default KnowledgeManagementWebPart;
