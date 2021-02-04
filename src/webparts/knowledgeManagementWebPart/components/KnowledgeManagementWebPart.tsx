@@ -1,39 +1,23 @@
 import * as React from 'react';
 import styles from './KnowledgeManagementWebPart.module.scss';
-import { useState, useEffect } from 'react';
 import { escape } from '@microsoft/sp-lodash-subset';
-import { WebPartContext } from '@microsoft/sp-webpart-base';
 import KMSearchBar from './KMSearchBar';
-import KMSearchResult from './KMSearchResult';
-
-const [searchBoxValue, setSearchBoxValue] = useState("");
+import { useState } from 'react';
 
 const KnowledgeManagementWebPart = () => {
-/*
- <KMSearchBar 
-          searchBoxValueProp={(searchBoxValue)}
-          searchBoxOnChangeProp={(e) => setSearchBoxValue(e)} />
 
-*/
-  useEffect(() => {
-
-
-    //Get all result
-  }, []);
-
-  return (
-    <div className={ styles.knowledgeManagementWebPart }>
-     
-
-      <KMSearchResult />
-
-      <div>
-        {"oho"}
-        {searchBoxValue}
+  const [searchBoxValue, setSearchBoxValue] = useState("");
+    return (
+      <div className={ styles.knowledgeManagementWebPart }>
+          <KMSearchBar 
+              searchBoxValueProp={searchBoxValue}
+              setSearchBoxValueProp={setSearchBoxValue} />
+              <div>
+                {searchBoxValue}
+              </div>
       </div>
-    </div>
-  );
-
-};
+    );
+  
+}
 
 export default KnowledgeManagementWebPart;

@@ -4,18 +4,17 @@ import { SearchBox } from 'office-ui-fabric-react';
 import * as strings from 'KnowledgeManagementWebPartWebPartStrings';
 import { useState } from 'react';
 
-const KMSearchBar = () => {
+const KMSearchBar = (props: { searchBoxValueProp: string, setSearchBoxValueProp: (e) => void }) => {
 
-    const [searchBoxValue, setSearchBoxValue] = useState("");
     return(
         <div className={styles.KMSearchBoxWrapper}>
             <SearchBox
                 placeholder={strings.SearchBox.DefaultPlacerHolder}
-                value={searchBoxValue}
+                value={props.searchBoxValueProp}
                 autoComplete= "off"
-                //onChange={ (value: string) => props.searchBoxOnChangeProp(value) }
+                onChange={ (value: string) => props.setSearchBoxValueProp(value) }
                 onSearch={ null }
-                onClear={ () => setSearchBoxValue("") }
+                onClear={ () => props.setSearchBoxValueProp("") }
             />
         </div>
     );
