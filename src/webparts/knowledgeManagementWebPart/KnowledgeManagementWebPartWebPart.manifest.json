@@ -21,7 +21,6 @@
     "description": { "default": "KnowledgeManagementWebPart description" },
     "officeFabricIconFontName": "Page",
     "properties": {
-      "description": "KnowledgeManagementWebPart"
     }
   }]
 }

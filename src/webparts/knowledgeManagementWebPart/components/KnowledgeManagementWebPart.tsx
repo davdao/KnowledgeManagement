@@ -1,10 +1,19 @@
 import * as React from 'react';
+import { useState, useEffect } from 'react';
 import styles from './KnowledgeManagementWebPart.module.scss';
-import { IKnowledgeManagementWebPartProps } from './IKnowledgeManagementWebPartProps';
 import { escape } from '@microsoft/sp-lodash-subset';
+import { WebPartContext } from '@microsoft/sp-webpart-base';
+import { msGraphBusiness } from '../../../business/msGraphBusiness';
 
-export default class KnowledgeManagementWebPart extends React.Component<IKnowledgeManagementWebPartProps, {}> {
-  public render(): React.ReactElement<IKnowledgeManagementWebPartProps> {
+const KnowledgeManagementWebPart = (props : { spfxContext: WebPartContext}) => {
+
+  useEffect(() => {
+    var toto = msGraphBusiness.GetCurrentUser(props.spfxContext);
+    var docs   = msGraphBusiness.GetAllDocuments(props.spfxContext);
+    
+    console.log('hello');
+  }, []);
+
     return (
       <div className={ styles.knowledgeManagementWebPart }>
         <div className={ styles.container }>
@@ -12,7 +21,7 @@ export default class KnowledgeManagementWebPart extends React.Component<IKnowled
             <div className={ styles.column }>
               <span className={ styles.title }>Welcome to SharePoint!</span>
               <p className={ styles.subTitle }>Customize SharePoint experiences using Web Parts.</p>
-              <p className={ styles.description }>{escape(this.props.description)}</p>
+
               <a href="https://aka.ms/spfx" className={ styles.button }>
                 <span className={ styles.label }>Learn more</span>
               </a>
@@ -21,5 +30,6 @@ export default class KnowledgeManagementWebPart extends React.Component<IKnowled
         </div>
       </div>
     );
-  }
-}
+};
+
+export default KnowledgeManagementWebPart;

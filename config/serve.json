@@ -3,8 +3,16 @@
   "port": 4321,
   "https": true,
   "initialPage": "https://localhost:5432/workbench",
-  "api": {
-    "port": 5432,
-    "entryPath": "node_modules/@microsoft/sp-webpart-workbench/lib/api/"
+  "serveConfigurations": {
+    "default": {
+      "pageUrl": "https://ddaodev.sharepoint.com/sites/testDavid",
+      "customActions": {
+        "85fbf2d0-5acf-4a1c-bc02-6721f770c325": {
+          "location": "ClientSideExtension.ApplicationCustomizer",
+          "properties": {
+          }
+        }
+      }
+    }
   }
 }
