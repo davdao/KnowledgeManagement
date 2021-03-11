@@ -2,8 +2,22 @@ declare interface IKnowledgeManagementWebPartWebPartStrings {
   PropertyPaneDescription: string;
   BasicGroupName: string;
   DescriptionFieldLabel: string;
+  InvalidDataSourceInstance: string;
   SearchBox: {
-    DefaultPlacerHolder: "Enter your search..."
+    DefaultPlacerHolder: string;
+  }
+  PropertyPanel: {
+    DisplayDescription: string;
+    HideShowSearchBar: string;
+    HideShowRefinementPanel: string;
+    ToggleResultYes: string;
+    ToggleResultNo: string;
+    ThemeLayout: {
+      Theme: string;
+      ThemeDescription: string;
+      ListView: string;
+      GridView: string;
+    }
   }
 }
 

@@ -2,9 +2,14 @@ import * as React from 'react';
 import styles from './KMSearchBar.module.scss';
 import { SearchBox } from 'office-ui-fabric-react';
 import * as strings from 'KnowledgeManagementWebPartWebPartStrings';
-import { useState } from 'react';
 
-const KMSearchBar = (props: { searchBoxValueProp: string, setSearchBoxValueProp: (e) => void }) => {
+export interface IKMSearchBarProps {
+    searchBoxValueProp: string;
+    setSearchBoxValueProp:(e) => void;
+}
+  
+
+const KMSearchBar = (props) => {
 
     return(
         <div className={styles.KMSearchBoxWrapper}>
