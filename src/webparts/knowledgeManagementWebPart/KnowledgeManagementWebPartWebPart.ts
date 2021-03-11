@@ -5,20 +5,22 @@ import KnowledgeManagementWebPart from './components/KnowledgeManagementWebPart'
 import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
 import { IPropertyPaneConfiguration, PropertyPaneChoiceGroup, PropertyPaneTextField, PropertyPaneToggle } from '@microsoft/sp-property-pane';
 import { sp } from "@pnp/sp/presets/all";
-import { ThemeBackgrounds } from '../../Common/Enum';
+import { ThemeBackgrounds } from '../../common/Enum';
 import { IDataSource } from '../../models/dataSource/IDataSource';
 import { ServiceKey, ServiceScope } from '@microsoft/sp-core-library';
-import { SharePointSearchDataSource } from '../../DataSource/SharePointSearchDataSource';
+import { SharePointSearchDataSource } from '../../dataSource/SharePointSearchDataSource';
 import { ServiceScopeHelper } from '../../helpers/ServiceScopeHelper';
 import { BaseDataSource } from '../../models/dataSource/BaseDataSource';
 import { TokenService } from '../../services/tokenService/TokenService';
-import { isEmpty } from '@microsoft/sp-lodash-subset';
+import { PropertyPanelSearchMetadataProperty } from '../../controls/PropertyPanel/SearchMetadataSelector/PropertyPanelSearchMetadataProperty';
+import { IComboBoxOption } from 'office-ui-fabric-react';
 
 export interface IKnowledgeManagementWebPartWebPartProps {
   title: any;
   ThemeLayout: ThemeBackgrounds;
   ShowHideSearchBar: boolean;
   ShowHideRefinementPanel: boolean;
+  availableManagedProperties: IComboBoxOption[];
 }
 
 export default class KnowledgeManagementWebPartWebPart extends BaseClientSideWebPart<IKnowledgeManagementWebPartWebPartProps> {  
@@ -40,10 +42,9 @@ export default class KnowledgeManagementWebPartWebPart extends BaseClientSideWeb
 
   public async render(): Promise<void> {
     this.dataSource = await this.GetDataSource(); 
-             
-    
+      /*       
     let tes = await this.dataSource.getAvailableProperties();
-console.log(tes);
+console.log(tes);*/
     const element: React.ReactElement = React.createElement(
       KnowledgeManagementWebPart,
       {
@@ -69,6 +70,7 @@ console.log(tes);
   }
 
   protected getPropertyPaneConfiguration(): IPropertyPaneConfiguration {
+
     return {
       pages: [
         {
@@ -101,6 +103,10 @@ console.log(tes);
                       iconProps: { officeFabricIconFontName: "waffle" }
                     }
                   ]
+                }),
+                new PropertyPanelSearchMetadataProperty('MetadataSearchProperties', {
+                  label:"bonjour",
+                  onLoadOptions: this.GetAllSearchProperties.bind(this)
                 })
               ]
             }
@@ -110,6 +116,9 @@ console.log(tes);
     };
   }
 
+  private  GetAllSearchProperties() {
+    return this.dataSource.getAvailableProperties()
+  }
   private initializeWebPartServices(): void {
 
     // Register specific Web Part service instances

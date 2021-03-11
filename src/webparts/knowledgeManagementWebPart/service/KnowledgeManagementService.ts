@@ -8,7 +8,7 @@ export default class KnowledgeManagementService {
 
     public static LoadData(_rowLimit: number, _queryText: string) {
         return new Promise<ISearchResult>((resolve, reject) => {
-            sp.search(<ISearchQuery> {
+           /* sp.search(<ISearchQuery> {
                 Querytext: _queryText,
                 RowLimit: _rowLimit,
                 SelectProperties: ["CreatedBy", "ModifiedBy", "Title", "FileType", "ModifiedOWSDATE", "Size"]
@@ -23,7 +23,7 @@ export default class KnowledgeManagementService {
             .catch((error) => {
                 //TODO Error
                 reject("error");
-            });
+            });*/
         });
     }
 

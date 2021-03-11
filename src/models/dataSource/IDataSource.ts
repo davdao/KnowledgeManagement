@@ -5,7 +5,7 @@ import { ServiceKey } from "@microsoft/sp-core-library";
 import { WebPartContext } from '@microsoft/sp-webpart-base';
 import { IDataFilter } from "../search/IDataFilter";
 import { FilterBehavior } from "./FilterBehavior";
-import { ITemplateSlot } from "../../Common/ITemplateSlot";
+import { ITemplateSlot } from "../../common/ITemplateSlot";
 import { IComboBoxOption } from "office-ui-fabric-react";
 
 export interface IServiceKeysConfiguration {

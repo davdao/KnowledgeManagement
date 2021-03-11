@@ -12,7 +12,7 @@ import { ISharePointSearchResponse } from '../../models/search/ISharePointSearch
 import { ISuggestResult, ISuggestQuery } from '../../models/search/ISuggestQuery';
 import { ISharePointSearchQuery, SortDirection } from '../../models/search/ISharePointSearchQuery';
 import { cloneDeep } from "@microsoft/sp-lodash-subset";
-import { Constants } from '../../Common/Constants';
+import { Constants } from '../../common/Constants';
 import { ISharePointSearchPromotedResult, ISharePointSearchResult, ISharePointSearchResultBlock, ISharePointSearchResults } from '../../models/search/ISharePointSearchResults';
 import { FilterComparisonOperator, IDataFilterResult, IDataFilterResultValue } from '../../models/search/IDataFilter';
 

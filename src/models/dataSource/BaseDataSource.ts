@@ -5,7 +5,7 @@ import { ServiceScope } from '@microsoft/sp-core-library';
 import { IDataContext } from './IDataContext';
 import { WebPartContext } from "@microsoft/sp-webpart-base";
 import { FilterBehavior } from "./FilterBehavior";
-import { ITemplateSlot } from "../../Common/ITemplateSlot";
+import { ITemplateSlot } from "../../common/ITemplateSlot";
 import { IDataFilter } from "../search/IDataFilter";
 import { IComboBoxOption } from "office-ui-fabric-react";
 

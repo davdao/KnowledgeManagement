@@ -6,7 +6,6 @@ import { ISharePointSearchService } from "../services/searchService/ISharePointS
 import { SharePointSearchService } from "../services/searchService/SharePointSearchService";
 import LocalizationHelper from "../helpers/LocalizationHelper";
 import { PageContext } from "@microsoft/sp-page-context";
-import { TokenService } from "../services/tokenService/TokenService";
 import { IComboBoxOption } from "office-ui-fabric-react";
 import { ISharePointSearchQuery, SortDirection, ISort } from "../models/search/ISharePointSearchQuery";
 import { DateHelper } from '../helpers/DateHelper';
@@ -16,7 +15,7 @@ import { EnumHelper } from '../helpers/EnumHelper';
 import { IDataContext } from '../models/dataSource/IDataContext';
 import { IDataFilterConfiguration } from '../models/search/IDataFilterConfiguration';
 import { FilterComparisonOperator, IDataFilter } from '../models/search/IDataFilter';
-import { BuiltinTemplateSlots, ITemplateSlot } from '../Common/ITemplateSlot';
+import { BuiltinTemplateSlots, ITemplateSlot } from '../common/ITemplateSlot';
 import { FilterBehavior } from '../models/dataSource/FilterBehavior';
 import { IDataSourceData } from '../models/dataSource/IDataSourceData';
 import { BaseDataSource } from '../models/dataSource/BaseDataSource';

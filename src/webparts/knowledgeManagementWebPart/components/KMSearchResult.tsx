@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useEffect } from 'react';
-import { ThemeBackgrounds } from '../../../Common/Enum';
+import { ThemeBackgrounds } from '../../../common/Enum';
 import KnowledgeManagementService from '../service/KnowledgeManagementService';
 import styles from './KMSearchResult.module.scss';
 import { useState } from 'react';

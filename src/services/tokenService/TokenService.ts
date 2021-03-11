@@ -3,7 +3,7 @@ import { PageContext } from '@microsoft/sp-page-context';
 import { SPHttpClient } from '@microsoft/sp-http';
 import { DateHelper } from "../../helpers/DateHelper";
 import { ObjectHelper } from "../../helpers/ObjectHelper";
-import { Constants } from "../../Common/Constants";
+import { Constants } from "../../common/Constants";
 import { IProfileProperties, ITokenService } from "./ITokenService";
 
 const TokenService_ServiceKey = 'ModernSearchTokenService';
