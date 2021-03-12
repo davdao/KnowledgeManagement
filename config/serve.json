@@ -1,10 +1,24 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/core-build/serve.schema.json",
+  "$schema": "https://dev.office.com/json-schemas/core-build/serve.schema.json",
   "port": 4321,
   "https": true,
   "initialPage": "https://localhost:5432/workbench",
   "api": {
     "port": 5432,
     "entryPath": "node_modules/@microsoft/sp-webpart-workbench/lib/api/"
+  },
+  "serveConfigurations": {
+    "default": {
+      "pageUrl": "https://ddaodev.sharepoint.com/sites/DemoComponents",
+      "customActions": {
+        "085fcc3a-8028-4339-8b1d-6b385004559f": {
+          "location": "ClientSideExtension.ApplicationCustomizer",
+          "properties": {
+            "testMessage": "Test message"
+          }
+        }
+      }
+    },
+    //code omitted for brevity
   }
 }

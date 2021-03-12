@@ -1,27 +1,30 @@
 import * as React from 'react';
 import * as ReactDom from 'react-dom';
-import { Version } from '@microsoft/sp-core-library';
-import {
-  IPropertyPaneConfiguration,
-  PropertyPaneTextField
-} from '@microsoft/sp-property-pane';
+import { IPropertyPaneConfiguration, PropertyPaneTextField } from '@microsoft/sp-property-pane';
 import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
 
 import * as strings from 'KnowledgeManagementWebPartWebPartStrings';
 import KnowledgeManagementWebPart from './components/KnowledgeManagementWebPart';
 import { IKnowledgeManagementWebPartProps } from './components/IKnowledgeManagementWebPartProps';
+import { PropertyPanelMultiComboBoxSelector } from '../../control/PropertyPanel/MultiComboxBoSelector/PropertyPanelMultiComboBoxSelector';
+import { ISharePointDataSourceServices, SharePointDataSourceServices } from '../../service/SharePointServices/SharePointDataSourceServices';
+import { IComboBoxOption } from 'office-ui-fabric-react/lib/components/ComboBox/ComboBox.types';
 
 export interface IKnowledgeManagementWebPartWebPartProps {
   description: string;
+  _availableManagedProperties: IComboBoxOption[];
 }
 
 export default class KnowledgeManagementWebPartWebPart extends BaseClientSideWebPart<IKnowledgeManagementWebPartWebPartProps> {
+
+  private _sharePointDataSourceServices: ISharePointDataSourceServices;
 
   public render(): void {
     const element: React.ReactElement<IKnowledgeManagementWebPartProps> = React.createElement(
       KnowledgeManagementWebPart,
       {
-        description: this.properties.description
+        description: this.properties.description,
+        serviceScope: this.context.serviceScope
       }
     );
 
@@ -32,11 +35,10 @@ export default class KnowledgeManagementWebPartWebPart extends BaseClientSideWeb
     ReactDom.unmountComponentAtNode(this.domElement);
   }
 
-  protected get dataVersion(): Version {
-    return Version.parse('1.0');
-  }
 
   protected getPropertyPaneConfiguration(): IPropertyPaneConfiguration {
+
+    this._sharePointDataSourceServices = this.context.serviceScope.consume(SharePointDataSourceServices.serviceKey);    
     return {
       pages: [
         {
@@ -49,6 +51,10 @@ export default class KnowledgeManagementWebPartWebPart extends BaseClientSideWeb
               groupFields: [
                 PropertyPaneTextField('description', {
                   label: strings.DescriptionFieldLabel
+                }),
+                new PropertyPanelMultiComboBoxSelector('selectedProperties', {
+                  label: "selectedProperties",
+                  availableOptions: this.getAllProperties(),
                 })
               ]
             }
@@ -56,5 +62,11 @@ export default class KnowledgeManagementWebPartWebPart extends BaseClientSideWeb
         }
       ]
     };
+  }
+
+  private async getAllProperties(){
+    if(this._sharePointDataSourceServices)
+      return await this._sharePointDataSourceServices.getAvailableProperties()
+    
   }
 }
